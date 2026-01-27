@@ -53,3 +53,17 @@ Validate against google-three-tier pattern
 calm validate -p patterns/google-three-tier-pattern.json -a architectures/my-test-architecture.json
 ```
 
+## Custom validations
+
+Set up python environment
+```shell
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+Run validation on deployment
+
+```shell
+python validate-deployment.py
+```

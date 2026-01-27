@@ -1,0 +1,15 @@
+{
+  "decorators": [
+    {
+      "unique-id": "frontend-deployment-001",
+      "type": "deployment",
+      "applies-to": ["frontend"],
+      "data": {
+        "deployment-start-time": "2026-01-27T10:00:00Z",
+        "deployment-status": "in-progress",
+        "deployment-observability": "https://grafana.example.com/d/abc123/frontend-deploy",
+        "some-metadata-key": "some-metadata-value"
+      }
+    }
+  ]
+}
