@@ -1,0 +1,35 @@
+{
+  "$schema": "https://calm.finos.org/release/1.1/meta/calm.json",
+  "$id": "https://example.com/patterns/company-base-pattern.json",
+  "title": "Company Base Pattern",
+  "description": "Base pattern that enforces company-wide standards on all architectures. Requires all nodes to follow the Company Node Standard and all relationships to follow the Company Relationship Standard. This pattern ensures organizational consistency across all system architectures.",
+  "type": "object",
+  "properties": {
+    "nodes": {
+      "type": "array",
+      "items": {
+        "allOf": [
+          {
+            "$ref": "https://calm.finos.org/release/1.1/meta/core.json#/defs/node"
+          },
+          {
+            "$ref": "https://example.com/standards/company-node-standard.json"
+          }
+        ]
+      }
+    },
+    "relationships": {
+      "type": "array",
+      "items": {
+        "allOf": [
+          {
+            "$ref": "https://calm.finos.org/release/1.1/meta/core.json#/defs/relationship"
+          },
+          {
+            "$ref": "https://example.com/standards/company-relationship-standard.json"
+          }
+        ]
+      }
+    }
+  }
+}

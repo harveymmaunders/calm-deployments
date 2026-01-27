@@ -1,0 +1,92 @@
+{
+  "nodes": [
+    {
+      "unique-id": "frontend",
+      "name": "Web Frontend",
+      "node-type": "webclient",
+      "description": "React-based web application for managing todo lists. Provides user interface for creating, reading, updating, and deleting todo items.",
+      "costCenter": "CC-2001",
+      "owner": "Frontend Team",
+      "environment": "production",
+      "interfaces": [
+        {
+          "unique-id": "frontend-url",
+          "type": "url"
+        }
+      ]
+    },
+    {
+      "unique-id": "app-service",
+      "name": "Application Service",
+      "node-type": "service",
+      "description": "REST API service handling todo list operations. Processes requests from frontend, implements business logic, and manages data persistence.",
+      "costCenter": "CC-2002",
+      "owner": "Backend Team",
+      "environment": "production",
+      "interfaces": [
+        {
+          "unique-id": "app-container",
+          "type": "container-image"
+        },
+        {
+          "unique-id": "app-port",
+          "type": "port"
+        }
+      ]
+    },
+    {
+      "unique-id": "database",
+      "name": "PostgreSQL Todo Database",
+      "node-type": "database",
+      "description": "Relational database storing todo items, user accounts, and task metadata. Provides persistent storage and query capabilities for the application.",
+      "costCenter": "CC-2003",
+      "owner": "Database Team",
+      "environment": "production"
+    }
+  ],
+  "relationships": [
+    {
+      "unique-id": "frontend-to-app",
+      "description": "HTTPS connection from web frontend to REST API service for todo list operations.",
+      "protocol": "HTTPS",
+      "dataClassification": "internal",
+      "encrypted": true,
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "frontend"
+          },
+          "destination": {
+            "node": "app-service"
+          }
+        }
+      }
+    },
+    {
+      "unique-id": "app-to-database",
+      "description": "Database connection from REST API service to PostgreSQL for reading and writing todo data.",
+      "dataClassification": "confidential",
+      "encrypted": true,
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "app-service"
+          },
+          "destination": {
+            "node": "database"
+          }
+        }
+      }
+    }
+  ],
+  "metadata": [
+    {
+      "gcp": {
+        "project-id": "todo-app-prod",
+        "region": "us-central1",
+        "environment": "production"
+      }
+    }
+  ],
+  "$schema": "https://patterns.google.com/three-tier-architecture.pattern.json"
+}
